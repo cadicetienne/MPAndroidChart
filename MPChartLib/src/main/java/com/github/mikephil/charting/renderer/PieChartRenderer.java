@@ -36,6 +36,11 @@ import java.util.List;
 
 public class PieChartRenderer extends DataRenderer {
 
+    private static final int DEFAULT_SHADOW_RADIUS = 10;
+    private static final int DEFAULT_SHADOW_DX = 5;
+    private static final int DEFAULT_SHADOW_DY = 5;
+    public static final int DEFAULT_SHADOW_COLOR = 0xcc888888;
+
     protected PieChart mChart;
 
     /**
@@ -269,10 +274,17 @@ public class PieChartRenderer extends DataRenderer {
                     @ColorInt int color = dataSet.getColor(j);
                     mRenderPaint.setColor(color);
                     if (mChart.getTransparentCircleRadius() > 0 && mChart.isDrawArcColorsInverted()) {
+                        if (mChart.isDrawShadow()) {
+                            mRenderPaint.setShadowLayer(0, 0, 0, 0);
+                            mTransparentCirclePaint.setShadowLayer(DEFAULT_SHADOW_RADIUS, DEFAULT_SHADOW_DX, DEFAULT_SHADOW_DY, DEFAULT_SHADOW_COLOR);
+                        }
                         drawArc(angle, rotationAngle, phaseY, circleBox, center, radius, drawInnerArc, visibleAngleCount, sliceSpace, mTransparentCirclePaint, sliceAngle, innerRadius);
                         drawArc(angle, rotationAngle, phaseY, smallCircleBox, center, secondHoleRadius, drawInnerArc, visibleAngleCount, sliceSpace, mRenderPaint, sliceAngle, innerRadius);
                     } else {
-                        mTransparentCirclePaint.setShadowLayer(0, 0, 0, 0);
+                        if (mChart.isDrawShadow()) {
+                            mTransparentCirclePaint.setShadowLayer(0, 0, 0, 0);
+                            mRenderPaint.setShadowLayer(DEFAULT_SHADOW_RADIUS, DEFAULT_SHADOW_DX, DEFAULT_SHADOW_DY, DEFAULT_SHADOW_COLOR);
+                        }
                         drawArc(angle, rotationAngle, phaseY, circleBox, center, radius, drawInnerArc, visibleAngleCount, sliceSpace, mRenderPaint, sliceAngle, innerRadius);
                         drawArc(angle, rotationAngle, phaseY, smallCircleBox, center, secondHoleRadius, drawInnerArc, visibleAngleCount, sliceSpace, mTransparentCirclePaint, sliceAngle, innerRadius);
                     }

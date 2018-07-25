@@ -71,6 +71,7 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
         mChart.setTransparentCircleColor(Color.DKGRAY);
         mChart.setTransparentCircleAlpha(255);
         mChart.setDrawArcColorsInverted(true);
+        mChart.setDrawShadow(true);
 
         mChart.setHoleRadius(58f);
         mChart.setTransparentCircleRadius(65f);

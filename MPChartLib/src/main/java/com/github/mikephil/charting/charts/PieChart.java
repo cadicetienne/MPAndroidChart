@@ -701,6 +701,26 @@ public class PieChart extends PieRadarChartBase<PieData> {
         return mDrawArcColorsInverted;
     }
 
+    /**
+     * Returns true if we should draw shadow on slices
+     *
+     * @return
+     */
+    public boolean isDrawShadow() {
+        return mDrawShadow;
+    }
+
+
+    /**
+     * Returns true if we should draw shadow on slices
+     *
+     * @return
+     */
+
+    public void setDrawShadow(boolean mDrawShadow) {
+        this.mDrawShadow = mDrawShadow;
+    }
+
 
     /**
      * the rectangular radius of the bounding box for the center text, as a percentage of the pie
